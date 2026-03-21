@@ -1,0 +1,19 @@
+[project]
+name = "grid-determination-bizom"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Saranya Pal", email = "papiapal987@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "pytest>=9.0.2",
+]
+
+[project.scripts]
+grid-determination-bizom = "grid_determination_bizom:main"
+
+[build-system]
+requires = ["uv_build>=0.9.18,<0.10.0"]
+build-backend = "uv_build"
