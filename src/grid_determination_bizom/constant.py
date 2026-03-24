@@ -1,35 +1,38 @@
-#   NOTE:
-#   'yellow_building_count' seems a very important column
-#   It alone makes the classes completely seperable
-
-#   When we drop this column, classes start overlapping
-#   We need to verify both of the cases (with and without the 'yellow_building_count')
 from pathlib import Path
 
-COLS_TO_DROP = [
-    "grid_id",
-    "latitude",
-    "longitude",
-    "waterbody",
-    "building_count",
-    "water_percent",
-    "empty",
-]
-
-
+#   This is being used...
 COLS_TO_KEEP = [
-    "building_density",
-    "yellow_building_density",
+    #   CSV FEATURES
+    # "building_density",
+    # "yellow_building_density",
+    # "yellow_building_proportion",
+    "avg_yellow_building_size",
     "total_building_density",
-    "main_road_density",
-    "local_road_density",
-    "total_road_density",
-    "usable_area_percent",
-    "kirana_potential_index",
-    "yellow_building_count",
+    # "main_road_density",
+    # "local_road_density",
+    # "total_road_density",
+    # "water_percent",
+    "water_percent_log",
+    # "usable_area_percent",
+    # "kirana_potential_index",
+    "kirana_potential_index_log",
+    # "yellow_building_count",
     "local_road_proportion",
     "dist_to_nearest_hub",
+    
+    #   IMAGE FEATURES
+    "green_cover_ratio",
+    # "edge_density",
+    "structural_complexity",
+
+    #   COMBINED FEATURES
+    # "market_activity_index",
+    # "street_exposure_index",
 ]
 
 
 SAVE_DIR = Path(__file__).parents[2] / "outputs"
+VIZ_DIR = Path(__file__).parents[2] / "outputs" / "_clustered_1774389117329.csv"
+
+print(SAVE_DIR)
+print(VIZ_DIR)

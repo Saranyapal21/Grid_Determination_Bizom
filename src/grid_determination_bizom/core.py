@@ -6,14 +6,15 @@ import pandas as pd
 
 from grid_determination_bizom.constant import SAVE_DIR
 from grid_determination_bizom.data_clustering.clustering import ClusteringModel
-from grid_determination_bizom.data_pipeline.data_loader_and_transformer import (
-    DataFrameFeatureTransformer,
+from grid_determination_bizom.data_pipeline.data_aggregation import (
+    DataAggregator,
     convert_to_dataframe,
 )
 
 
 def save_df_as_csv(df: pd.DataFrame, output_dir: Path, csv_name: str) -> None:
     full_path = os.path.join(output_dir, csv_name)
+    print(f"Saving csv file at: {full_path}")
     df.to_csv(full_path, index=False)
 
 
@@ -26,7 +27,7 @@ def run_clustering_pipeline(
 ) -> pd.DataFrame:
 
     df = convert_to_dataframe(file_path)
-    transformer = DataFrameFeatureTransformer(df=df)
+    transformer = DataAggregator(df=df)
     X_scaled, new_df = transformer()
 
     model = ClusteringModel(estimator=estimator(**kwargs))
@@ -40,9 +41,7 @@ def run_clustering_pipeline(
     else:
         print(f"Note: No probability columns added for {estimator.__name__}.")
 
-    # print(new_df.columns)
-    # print("--" * 20)
-    # print(new_df["labels"].value_counts())
+    print(new_df["labels"].value_counts())
 
     if save_as_csv:
         timestamp = int(time.time() * 1000)

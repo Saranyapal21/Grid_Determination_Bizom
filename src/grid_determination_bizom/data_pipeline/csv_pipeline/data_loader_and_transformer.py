@@ -27,7 +27,10 @@ class DataFrameFeatureTransformer:
         self.get_primary_transformed_features()
         self.get_distance_to_nearest_hub(k=k, radius=radius)
 
-        return self.scale_and_finalize_df(), self.df
+        return self.df
+
+    def apply_log_transform(self, val: float):
+        return np.log1p(val)
 
     def get_primary_transformed_features(self) -> None:
         self.df["usable_area_percent"] = 100.0 - (
@@ -38,24 +41,29 @@ class DataFrameFeatureTransformer:
         ) * safe_divide(
             self.df["yellow_building_density"], self.df["total_building_density"]
         )
+
+        total_building_count = (
+            self.df["yellow_building_count"] + self.df["building_count"]
+        )
+        self.df["yellow_building_proportion"] = safe_divide(
+            self.df["yellow_building_count"], total_building_count
+        )
+
         self.df["local_road_proportion"] = safe_divide(
             self.df["local_road_density"], self.df["total_road_density"]
+        )
+
+        self.df["avg_yellow_building_size"] = safe_divide(
+            self.df["yellow_building_density"], self.df["yellow_building_count"]
+        )
+
+        self.df["water_percent_log"] = self.df["water_percent"].apply(
+            self.apply_log_transform
+        )
+        self.df["kirana_potential_index_log"] = self.df["kirana_potential_index"].apply(
+            self.apply_log_transform
         )
 
     def get_distance_to_nearest_hub(self, k: int = 1, radius: float = 6371.0) -> None:
         distances_rad, indices = self.tree.query(self.all_coords_rad, k=k)
         self.df["dist_to_nearest_hub"] = distances_rad * radius
-
-    def scale_and_finalize_df(
-        self, cols_to_keep: List[str] = COLS_TO_KEEP
-    ) -> pd.DataFrame:
-        df_reduced = self.df[cols_to_keep]
-        X_scaled = StandardScaler().fit_transform(df_reduced)
-
-        return X_scaled
-
-
-def convert_to_dataframe(file_path: str) -> pd.DataFrame:
-    df = pd.read_csv(file_path)
-    sorted_df = df.sort_values(by="grid_id", ascending=True).reset_index(drop=True)
-    return sorted_df
