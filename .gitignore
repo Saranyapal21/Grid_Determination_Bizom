@@ -5,6 +5,7 @@ build/
 dist/
 wheels/
 *.egg-info
+.ruff_cache
 
 # Virtual environments
 .venv
@@ -12,3 +13,7 @@ wheels/
 
 # Other Files and Folders
 data/
+.pytest_cache
+.DS_Store
+outputs/
+notebooks/
