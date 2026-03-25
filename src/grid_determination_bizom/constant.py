@@ -49,8 +49,11 @@ ALL_COLS = [
     #   COMBINED FEATURES
     "market_activity_index",
     "street_exposure_index",
+    #   OUTPUT COLUMNS
+    "grid_score",
+    "grid_segment",
 ]
 
 
 SAVE_DIR = Path(__file__).parents[2] / "outputs"
-VIZ_DIR = Path(__file__).parents[2] / "outputs" / "_clustered_final_1774454078423.csv"
+VIZ_DIR = Path(__file__).parents[2] / "outputs" / "_clustered_final_1774459709112.csv"
