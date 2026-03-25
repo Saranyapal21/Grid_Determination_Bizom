@@ -1,38 +1,56 @@
 from pathlib import Path
 
-#   This is being used...
-COLS_TO_KEEP = [
-    #   CSV FEATURES
-    # "building_density",
-    # "yellow_building_density",
-    # "yellow_building_proportion",
-    "avg_yellow_building_size",
+#   This will be used for segregating low potential from (medium + high) potential [Stage 1 clustering]
+COLS_TO_KEEP_1 = [
     "total_building_density",
-    # "main_road_density",
-    # "local_road_density",
-    # "total_road_density",
-    # "water_percent",
-    "water_percent_log",
-    # "usable_area_percent",
-    # "kirana_potential_index",
     "kirana_potential_index_log",
-    # "yellow_building_count",
+    "dist_to_nearest_hub",
+    "green_cover_ratio",
+]
+
+
+#   This will be used for segregating medium potential from high potential [Stage 2 clustering]
+COLS_TO_KEEP_2 = [
+    "avg_yellow_building_size",
+    "local_road_proportion",
+    "edge_density",
+    "market_activity_index",
+]
+
+
+ALL_COLS = [
+    #   CSV FEATURES
+    "grid_id",
+    "latitude",
+    "longitude",
+    "building_count",
+    "yellow_building_count",
+    "building_density",
+    "yellow_building_density",
+    "total_building_density",
+    "yellow_building_proportion",
+    "avg_yellow_building_size",
+    "main_road_density",
+    "local_road_density",
+    "total_road_density",
+    "water_percent",
+    "water_percent_log",
+    "waterbody",
+    "empty",
+    "usable_area_percent",
+    "kirana_potential_index",
+    "kirana_potential_index_log",
     "local_road_proportion",
     "dist_to_nearest_hub",
-    
     #   IMAGE FEATURES
     "green_cover_ratio",
-    # "edge_density",
+    "edge_density",
     "structural_complexity",
-
     #   COMBINED FEATURES
-    # "market_activity_index",
-    # "street_exposure_index",
+    "market_activity_index",
+    "street_exposure_index",
 ]
 
 
 SAVE_DIR = Path(__file__).parents[2] / "outputs"
-VIZ_DIR = Path(__file__).parents[2] / "outputs" / "_clustered_1774389117329.csv"
-
-print(SAVE_DIR)
-print(VIZ_DIR)
+VIZ_DIR = Path(__file__).parents[2] / "outputs" / "_clustered_final_1774454078423.csv"
