@@ -12,6 +12,5 @@ wheels/
 
 
 # Other Files and Folders
-data/
 .pytest_cache
 .DS_Store
