@@ -12,11 +12,11 @@ if __name__ == "__main__":
     print("Running Gaussian Mixture model clustering....")
     run_clustering_pipeline(
         FILE_PATH,
-        save_as_csv=True,
+        save_as_csv=False,
         estimator=GaussianMixture,
-        n_components=3,
+        n_components=2,
         covariance_type="full",
-        random_state=20,
+        random_state=42,
     )
 
     # print("Running K-Means clustering....")

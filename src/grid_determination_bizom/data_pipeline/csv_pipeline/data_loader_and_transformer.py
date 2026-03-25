@@ -6,7 +6,6 @@ from sklearn.neighbors import BallTree
 from sklearn.preprocessing import StandardScaler
 
 from grid_determination_bizom.utils.math_utils import safe_divide
-from grid_determination_bizom.constant import COLS_TO_KEEP
 
 
 class DataFrameFeatureTransformer:

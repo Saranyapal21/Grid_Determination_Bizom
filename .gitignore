@@ -15,5 +15,3 @@ wheels/
 data/
 .pytest_cache
 .DS_Store
-outputs/
-notebooks/
