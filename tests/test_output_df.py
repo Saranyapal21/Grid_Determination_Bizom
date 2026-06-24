@@ -5,6 +5,7 @@ from grid_determination_bizom.core import run_clustering_pipeline
 
 FILE_PATH = Path(__file__).parents[1] / "data" / "delhi_grids.csv"
 
+
 def test_run_clustering_pipeline():
     final_df = run_clustering_pipeline(
         FILE_PATH,
@@ -51,4 +52,4 @@ def test_run_clustering_pipeline():
 
     assert expected_columns.issubset(set(all_columns)), (
         f"Missing columns: {expected_columns - set(all_columns)}"
-    ) 
+    )

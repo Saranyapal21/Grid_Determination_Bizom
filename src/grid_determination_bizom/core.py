@@ -131,10 +131,12 @@ def run_clustering_pipeline(
         timestamp = int(time.time() * 1000)
         csv_name = "_clustered_final_" + str(timestamp) + ".csv"
         save_df_as_csv(final_combined_df, output_dir, csv_name)
+        # Stable-named copy so the viewer app never needs the timestamp.
+        save_df_as_csv(final_combined_df, output_dir, "clustered_final.csv")
         save_df_as_csv(
             final_combined_df[["grid_id", "grid_score", "grid_segment"]],
             output_dir,
-            "enriched_output.csv"
+            "enriched_output.csv",
         )
 
     return final_combined_df

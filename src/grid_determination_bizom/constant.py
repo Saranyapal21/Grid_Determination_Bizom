@@ -56,4 +56,4 @@ ALL_COLS = [
 
 
 SAVE_DIR = Path(__file__).parents[2] / "outputs"
-VIZ_DIR = Path(__file__).parents[2] / "outputs" / "_clustered_final_1774459709112.csv"
+VIZ_DIR = SAVE_DIR / "clustered_final.csv"
